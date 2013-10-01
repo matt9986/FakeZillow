@@ -7,6 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= root_url %>">FakeZillow</a>
+    </div>
+    
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="<%= root_url %>">Home</a></li>
+        <li>
+          <% if logged_in? %>
+            <%= button_to "Sign out", session_url, method: "delete" %>
+          <% else %>
+            <a href="<%= new_session_url %>">Sign in/up</a>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <% if flash[:errors] %>
   <p>
   <%   flash.errors.each do |error| %>

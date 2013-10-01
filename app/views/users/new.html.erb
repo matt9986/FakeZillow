@@ -1,14 +1,17 @@
-<form action="<%= users_url %>" method="post">
-  <label for="user_email">Email:</label>
-  <input type=email id="user_email" name="user[email]">
-  <br>
-  <label for="user_password">Password:</label>
-  <input type="password" id="user_password" name="user[password]">
-  <br>
-  <label for="user_agent">I'm an agent</label>
-  <input type="checkbox" name="user[agent]" value="true">
-  <br>
-  <input type="submit" value="login">
+<form action="<%= users_url %>" method="post" role="form">
+  <div class="form-group">
+    <label for="user_email">Email:</label>
+    <input type=email id="user_email" name="user[email]">
+  </div>
+  <div class="form-group">
+    <label for="user_password">Password:</label>
+    <input type="password" id="user_password" name="user[password]">
+  </div>
+  <div class="checkbox">
+    <label for="user_agent">I'm an agent</label>
+    <input type="checkbox" name="user[agent]" value="true" id="user_agent">
+  </div>
+  <button type="submit" class="btn btn-default">Sign up!</button>
 </form>
 <p> Already have an account? <a 
                                href="<%= new_session_url %>"
