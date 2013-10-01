@@ -1,0 +1,15 @@
+<form action="<%= users_url %>" method="post">
+  <label for="user_email">Email:</label>
+  <input type=email id="user_email" name="user[email]">
+  <br>
+  <label for="user_password">Password:</label>
+  <input type="password" id="user_password" name="user[password]">
+  <br>
+  <label for="user_agent">I'm an agent</label>
+  <input type="checkbox" name="user[agent]" value="true">
+  <br>
+  <input type="submit" value="login">
+</form>
+<p> Already have an account? <a 
+                               href="<%= new_session_url %>"
+                               >Sign in</a></p>

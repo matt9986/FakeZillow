@@ -5,4 +5,9 @@ class Listing < ActiveRecord::Base
   friendly_id [:address, :city], use: :slugged
   
   belongs_to :user
+  
+  def self.search(search)
+    listings = Listing.where(zip: search[:search])
+    #price, city/state, zip
+  end
 end

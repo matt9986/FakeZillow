@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
         format.json render json: {username: user.username}
       end
 		else
+      flash[:errors] = ["There was a problem with your login information"]
       respond_to do |format|
         format.html render :new
         format.json render json: ["There was a problem with your login information"], status: 404

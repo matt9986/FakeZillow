@@ -1,0 +1,6 @@
+<h3>Search results:</h3>
+<ul>
+  <% @listings.each do |listing| %>
+  <li><%= render "small_listing", listing: listing %></li>
+  <% end %>
+</ul>
