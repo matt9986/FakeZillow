@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131001184136) do
+ActiveRecord::Schema.define(:version => 20131002221612) do
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -32,11 +32,16 @@ ActiveRecord::Schema.define(:version => 20131001184136) do
     t.integer  "price"
     t.integer  "user_id"
     t.string   "slug"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps",      :default => false
   end
 
   add_index "listings", ["city", "state"], :name => "index_listings_on_city_and_state"
+  add_index "listings", ["latitude"], :name => "index_listings_on_latitude"
+  add_index "listings", ["longitude"], :name => "index_listings_on_longitude"
   add_index "listings", ["price"], :name => "index_listings_on_price"
   add_index "listings", ["slug"], :name => "index_listings_on_slug", :unique => true
   add_index "listings", ["user_id"], :name => "index_listings_on_user_id"

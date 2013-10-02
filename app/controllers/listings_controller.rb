@@ -26,6 +26,10 @@ class ListingsController < ApplicationController
   
   def index
     @listings = current_user.listings.page(params[:page])
+    @json = @listings.to_gmaps4rails do |listing, marker|
+      marker.infowindow render_to_string(:partial => "/listings/map_window", :locals => { :listing => listing})
+      marker.title listing.price.to_s
+    end
     respond_to do |format|
       format.html { render :index }
       format.json { rendre json: @listings }
