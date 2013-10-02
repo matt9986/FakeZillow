@@ -1,0 +1,9 @@
+<div>
+  <h3>Your listings:</h3>
+  <ul>
+    <% @listings.each do |listing| %>
+      <li><%= render "small_listing", listing: listing %></li>
+    <% end %>
+  </ul>
+  <%= paginate @listings %>
+</div>

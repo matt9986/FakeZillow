@@ -1,3 +1,12 @@
 // Place all the styles related to the searches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.backdrop {
+  position: absolute;
+  z-index: 1;
+}
+.searchbox {
+  border-radius: 3px;
+  top: 250px;
+  z-index: 9;
+}

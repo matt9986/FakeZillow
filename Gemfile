@@ -42,3 +42,6 @@ gem 'rabl'
 
 # Pretty URLs
 gem "friendly_id", "~> 4.0.10"
+
+# Pages
+gem 'kaminari'
