@@ -1,0 +1,39 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="<%= root_url %>">FakeZillow</a>
+  </div>
+
+  <div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
+    <ul class="nav navbar-nav">
+      <li><a href="<%= root_url %>">Home</a></li>
+      <li class="drop-down">
+        <% if logged_in? %>
+          <a href="#" class="dropdown-toggle"
+             data-toggle="dropdown"
+             ><%= current_user.email %><b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li>
+            <%= button_to "Sign out", 
+                          session_url, 
+                          method: "delete",
+                          form_class: "navbar-btn"%>
+          </li>
+        </ul>
+        <% else %>
+        <a href="#" class="dropdown-toggle"
+             data-toggle="dropdown"
+             >Sign in/up!<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="<%= new_session_url %>">Sign in!</a></li>
+          <li><a href="<%= new_users_url %>">Sign up!</a></li>
+        </ul>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>

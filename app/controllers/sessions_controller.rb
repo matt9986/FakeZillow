@@ -5,14 +5,14 @@ class SessionsController < ApplicationController
 		if user && user.password == params[:user][:password]
 			log_in(user)
       respond_to do |format|
-        format.html redirect_to root_url
-        format.json render json: {username: user.username}
+        format.html { redirect_to root_url }
+        format.json { render json: {email: user.email} }
       end
 		else
       flash[:errors] = ["There was a problem with your login information"]
       respond_to do |format|
-        format.html render :new
-        format.json render json: ["There was a problem with your login information"], status: 404
+        format.html { render :new }
+        format.json { render json: ["There was a problem with your login information"], status: 422 }
       end
 		end
 	end
@@ -20,8 +20,8 @@ class SessionsController < ApplicationController
 	def destroy
 		log_out
     respond_to do |format|
-        format.html redirect_to root_url
-        format.json render json: "You've logged out"
+      format.html { redirect_to root_url }
+      format.json { render json: "You've logged out" }
     end
 	end
   
