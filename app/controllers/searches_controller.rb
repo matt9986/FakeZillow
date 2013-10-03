@@ -4,10 +4,17 @@ class SearchesController < ApplicationController
   end
   
   def index
-    @listings = Listing.search_params(params[:listing]).page(params[:page])
+    lat, lng = params[:listing][:coord].split(", ")
+    @listings = Listing.find_near_coord(lat.to_f, lng.to_f).page(params[:page])
+    
+    @json = @listings.to_gmaps4rails do |listing, marker|
+      marker.infowindow render_to_string(:partial => "/listings/map_window", :locals => { :listing => listing})
+      marker.title listing.price.to_s
+    end
+    
     respond_to do |format|
-      format.html render :show
-      format.json render json: @listings
+      format.html { render :index }
+      format.json { render json: @listings }
     end
   end
 end

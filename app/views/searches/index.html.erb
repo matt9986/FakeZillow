@@ -1,8 +1,18 @@
-<div>
+<div class="map col-md-6">
+  <%= gmaps("map_options" => { 
+      "detect_location" => true, 
+      "center_on_user" => true,
+      container_class: "",
+      class: "map",
+      "zoom" => 6},
+    "markers" => { "data" => @json },
+    ) %>
+</div>
+<div class="map col-md-6">
   <h3>Search results:</h3>
   <ul>
     <% @listings.each do |listing| %>
-      <li><%= render "small_listing", listing: listing %></li>
+      <li><%= render "listings/small_listing", listing: listing %></li>
     <% end %>
   </ul>
   <%= paginate @listings %>

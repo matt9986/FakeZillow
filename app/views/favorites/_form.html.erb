@@ -1,2 +1,2 @@
-<% icon, method = (current_user.favorites.include?(listing) ? ["</3", "delete"] : ["<3", "post"] )%>
+<% icon, method = (current_user.favorite_listings.include?(listing) ? ["</3", "delete"] : ["<3", "post"] )%>
 <%= button_to icon, listing_favorite_url(listing), method: method %>
