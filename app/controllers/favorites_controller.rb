@@ -13,7 +13,6 @@ class FavoritesController < ApplicationController
   def destroy
     @listing = Listing.find(params[:listing_id])
     @favorite = current_user.favorites.where(listing_id: @listing.id).first
-    p @favorite
     @favorite.destroy
     respond_to do |format|
       format.html { redirect_to listings_url }
