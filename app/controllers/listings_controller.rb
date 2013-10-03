@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_filter :check_login, only: [:new, :create, :index]
+  before_filter :check_login, except: [:show]
   before_filter :check_auth, only: [:destroy, :edit, :update]
   
   def create
@@ -22,7 +22,10 @@ class ListingsController < ApplicationController
   def destroy
     @listing = Listing.find(params[:id])
     @listing.destroy
-    redirect_to listings_url
+    respond_to do |format|
+      format.html { redirect_to listings_url }
+      format.json { json: nil, status: 200 }
+    end
   end
   
   def edit
@@ -55,6 +58,10 @@ class ListingsController < ApplicationController
   
   def show
     @listing = Listing.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { rendre json: @listing }
+    end
   end
   
   def update
@@ -77,7 +84,10 @@ class ListingsController < ApplicationController
   def check_auth
     @listing = Listing.find(params[:id])
     unless current_user.id == @listing.user_id
-      redirect_to listing_url(@listing)
+      respond_to do |format|
+        format.html { redirect_to listing_url(@listing) }
+        format.json { render json: "Not authorized", status: 403 }
+      end
     end
   end
 end
