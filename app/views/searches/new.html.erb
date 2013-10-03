@@ -40,7 +40,23 @@
         name="listing[coord]"
         placeholder="Geo coords, (e.g. '37.8, -122.4')">
     </div>
+    <div class="extraInfo form-group hidden">
+      <label for="listing_max_price">Max price</label>
+      <input type="number"
+        name="listing[max_price]"
+        id="listing_max_price">
+    </div>
     <button type="submit" class="btn btn-default">Search</button>
+    <a href="#" id="hiddenFormToggle">Show more</a>
   </form>
 </div>
 </div>
+
+<script>
+  $(function(){
+    $("a#hiddenFormToggle").on("click", function(){
+      event.preventDefault();
+      $("form div.extraInfo").toggleClass("hidden")
+    });
+  });
+</script>
