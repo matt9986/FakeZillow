@@ -17,8 +17,8 @@
              data-toggle="dropdown"
              ><%= current_user.email %><b class="caret"></b></a>
         <ul class="dropdown-menu">
+          <li><a href="<%= listings_url %>">Your listings</a></li>
           <% if current_user.agent %>
-            <li><a href="<%= listings_url %>">Your listings</a></li>
             <li><a href="<%= new_listing_url %>">Post a listing</a></li>
           <% end %>
           <li>
