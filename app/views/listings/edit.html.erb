@@ -1,1 +1,12 @@
 <%= render "form", listing: @listing, action: :edit %>
+<form action="<%= listing_url(@listing) %>" method="post">
+  <input type="hidden"
+    name="authenticity_token" 
+    value="<%= form_authenticity_token %>">
+  <input type="hidden"
+    name="_method" 
+    value="delete">
+  <div class="form-group">
+    <button type="submit" class="btn btn-default">Delete Listing</button>
+  </div>
+</form>

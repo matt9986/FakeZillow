@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   										:on => :create
   
   has_many :listings
+  has_many :favorites
+  has_many :favorite_listings, through: :favorites, source: :listing
   
   def password
   	@password || BCrypt::Password.new(self.pass_hash)

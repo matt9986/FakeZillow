@@ -5,8 +5,13 @@
     <h4><%= @listing.city %>, <%= @listing.city %> <%= @listing.zip %></h4>
   </div>
   <div class="col-md-4">
-    <h3>Contact</h3>
-    <p><a href="mailto:<%= @listing.user.email %>"><%= @listing.user.email %></a></p>
+    <% if current_user == @listing.user %>
+      <h3>Need to make changes?</h3>
+      <p><a href="<%= edit_listing_url(@listing) %>">Edit listing</a></p>
+    <% else %>
+      <h3>Contact</h3>
+      <p><a href="mailto:<%= @listing.user.email %>"><%= @listing.user.email %></a></p>
+    <% end %>
   </div>
 </div>
 <div>

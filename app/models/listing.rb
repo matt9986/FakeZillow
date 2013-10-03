@@ -6,6 +6,7 @@ class Listing < ActiveRecord::Base
   friendly_id :address_then_city, use: :slugged
   
   belongs_to :user
+  has_many :favorites
   
   def self.search_params(search)
     listings = Listing.where(zip: 

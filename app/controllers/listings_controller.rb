@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_filter :check_login, only: [:new, :create, :index]
-  before_filter :check_auth, only: [:edit, :update]
+  before_filter :check_auth, only: [:destroy, :edit, :update]
   
   def create
     params[:listing][:user_id] = current_user.id
@@ -19,17 +19,29 @@ class ListingsController < ApplicationController
     end
   end
   
+  def destroy
+    @listing = Listing.find(params[:id])
+    @listing.destroy
+    redirect_to listings_url
+  end
+  
   def edit
     @listing ||= Listing.find(param[:id])
     render :edit
   end
   
   def index
-    @listings = current_user.listings.reverse_order.page(params[:page])
+    if current_user.agent
+      @listings = current_user.listings.reverse_order.page(params[:page])
+    else
+      @listings = current_user.favorite_listings.reverse_order.page(params[:page])
+    end
+    
     @json = @listings.to_gmaps4rails do |listing, marker|
       marker.infowindow render_to_string(:partial => "/listings/map_window", :locals => { :listing => listing})
       marker.title listing.price.to_s
     end
+    
     respond_to do |format|
       format.html { render :index }
       format.json { rendre json: @listings }
