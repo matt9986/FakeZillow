@@ -6,7 +6,7 @@ class Listing < ActiveRecord::Base
   friendly_id :address_then_city, use: :slugged
   
   belongs_to :user
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   
   def self.find_near_coord(lat, lng, dist = 40.2) # 25 mile "radius"
     lat, lng = self.deg_to_rad( lat ), self.deg_to_rad( lng )

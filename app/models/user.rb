@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   										:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,4})\Z/i, 
   										:on => :create
   
-  has_many :listings
-  has_many :favorites
+  has_many :listings, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :favorite_listings, through: :favorites, source: :listing
   
   def password
