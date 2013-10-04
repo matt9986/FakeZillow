@@ -24,7 +24,7 @@ class ListingsController < ApplicationController
     @listing.destroy
     respond_to do |format|
       format.html { redirect_to listings_url }
-      format.json { json: nil, status: 200 }
+      format.json { render json: nil, status: 200 }
     end
   end
   
